@@ -193,6 +193,13 @@ public class CoordinateEditor extends ApplicationAdapter {
 
         batch.end();
 
+        renderer.setProjectionMatrix(camera.combined);
+        if(selectedLayer != null){
+            renderer.begin(ShapeRenderer.ShapeType.Line);
+            selectedLayer.draw(camera, renderer);
+            renderer.end();
+        }
+
         camera.position.x = cameraStart.x;
         camera.position.y = cameraStart.y;
         camera.update();
@@ -208,11 +215,7 @@ public class CoordinateEditor extends ApplicationAdapter {
         renderer.end();
 
 
-        if(selectedLayer != null){
-            renderer.begin(ShapeRenderer.ShapeType.Line);
-            selectedLayer.draw(camera, renderer);
-            renderer.end();
-        }
+
 
 
         batch.begin();
