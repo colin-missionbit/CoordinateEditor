@@ -115,7 +115,7 @@ public class ShapeLayer {
                 Polygon p = (Polygon)s;
                 float[] tmpvert = p.getVertices();
                 for(int pv = 0; pv < tmpvert.length; pv++){
-                    System.out.print(tmpvert[pv] + ", ");
+                    System.out.print(tmpvert[pv] + "f, ");
                 }
             }
             System.out.println("},");
