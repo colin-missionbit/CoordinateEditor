@@ -80,7 +80,7 @@ public class ShapeLayer {
     }
 
     public void completeCurrent(float x, float y){
-        if(shapeType.equals("rect")) {
+        if(shapeType.equals("rect")  && lastClick != null) {
             shapeItems.add(new Rectangle(lastClick.x, lastClick.y, x - lastClick.x, y - lastClick.y));
             clearCurrent();
         }
