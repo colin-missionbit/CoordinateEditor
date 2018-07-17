@@ -81,7 +81,21 @@ public class ShapeLayer {
 
     public void completeCurrent(float x, float y){
         if(shapeType.equals("rect")  && lastClick != null) {
-            shapeItems.add(new Rectangle(lastClick.x, lastClick.y, x - lastClick.x, y - lastClick.y));
+            float rectX = lastClick.x;
+            float rectY = lastClick.y;
+            float rectW = x - lastClick.x;
+            float rectH = y - lastClick.y;
+
+            if(rectW < 0){
+                rectX += rectW;
+                rectW *= -1;
+            }
+            if(rectH < 0){
+                rectY += rectH;
+                rectH *= -1;
+            }
+            shapeItems.add(new Rectangle(rectX, rectY, rectW, rectH));
+            //shapeItems.add(new Rectangle(lastClick.x, lastClick.y, x - lastClick.x, y - lastClick.y));
             clearCurrent();
         }
         else{
@@ -121,8 +135,17 @@ public class ShapeLayer {
             System.out.println("},");
         }
         System.out.print("};\n\n");
-//        Json json = new Json();
-//        System.out.println(json.prettyPrint(json.toJson(shapeItems)));
+
+    }
+
+    public String getJson(){
+        Json json = new Json();
+        String j = "";//
+        json.writeObjectStart();
+        // json.prettyPrint(json.toJson(shapeItems));
+        json.writeObjectEnd();
+
+        return json.prettyPrint(json.toString());
     }
 
 }

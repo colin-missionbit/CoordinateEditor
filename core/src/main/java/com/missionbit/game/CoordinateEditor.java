@@ -45,7 +45,7 @@ public class CoordinateEditor extends ApplicationAdapter {
     @Override
     public void create(){
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
+        camera.setToOrtho(false, VIEWPORT_WIDTH / 1.5f, VIEWPORT_HEIGHT / 1.5f);
 
         cameraStart = new Vector2(Gdx.graphics.getWidth() / 2.0f,Gdx.graphics.getHeight() / 2.0f);
         cameraOffset = new Vector2(0, 0);
@@ -175,6 +175,14 @@ public class CoordinateEditor extends ApplicationAdapter {
             System.out.println("/** END JAVA CODE EXPORT**/\n");
         }
 
+        if(Gdx.input.isKeyJustPressed(Input.Keys.K)) {
+
+            for(ShapeLayer l : items.values()){
+                System.out.println(l.getJson());
+            }
+
+        }
+
         if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE) && selectedLayer != null) {
             selectedLayer.clearCurrent();
         }
@@ -199,6 +207,8 @@ public class CoordinateEditor extends ApplicationAdapter {
             selectedLayer.draw(camera, renderer);
             renderer.end();
         }
+
+        camera.setToOrtho(false, VIEWPORT_WIDTH , VIEWPORT_HEIGHT );
 
         camera.position.x = cameraStart.x;
         camera.position.y = cameraStart.y;
