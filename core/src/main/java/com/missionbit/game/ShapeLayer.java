@@ -104,18 +104,18 @@ public class ShapeLayer {
 
     public void printJava(){
 
-        System.out.println("int[][] " + title + " = new int[][]{");
+        System.out.println("float[][] " + title + " = new float[][]{");
         for(Shape2D s : shapeItems) {
             System.out.print("{");
             if(shapeType.equals("rect")) {
                 Rectangle r = (Rectangle)s;
-                System.out.print((int)r.x + ", " + (int)r.y + ", " + (int)r.width + ", " + (int)r.height);
+                System.out.print(r.x + ", " + r.y + ", " + r.width + ", " + r.height);
             }
             else if(shapeType.equals("poly")){
                 Polygon p = (Polygon)s;
                 float[] tmpvert = p.getVertices();
                 for(int pv = 0; pv < tmpvert.length; pv++){
-                    System.out.print((int)tmpvert[pv] + ", ");
+                    System.out.print(tmpvert[pv] + ", ");
                 }
             }
             System.out.println("},");
